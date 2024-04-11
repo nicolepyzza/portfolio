@@ -1,44 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-scroll";
+import React, { useEffect } from "react";
 import { Parallax } from "react-parallax";
+import { Document } from 'react-pdf';
 import "./App.css";
+import Navbar from "./components/navbar";
+import resume from './assets/NicolePyzza2024.pdf';
 
 function App() {
-  const [navStuck, setNavStuck] = useState(false);
-  const [navHeight, setNavHeight] = useState(0);
-
   useEffect(() => {
     const handleScroll = () => {
-      const scrolled = window.scrollY;
-      if (scrolled >= navHeight) {
-        setNavStuck(true);
-      } else {
-        setNavStuck(false);
-      }
-    };
+      var header = document.getElementById('header');
+      var sticky = header.offsetTop;
 
-    const handleResize = () => {
-      const navElement = document.getElementById("navbar");
-      if (navElement) {
-        const height = navElement.offsetHeight;
-        setNavHeight(height);
-      }
-    };
+        if (window.scrollY > sticky) {
+            header.classList.add("sticky");
+        } else {
+            header.classList.remove("sticky");
+        }
+    }
 
-    // Add event listeners
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('scroll', handleScroll);
 
-    // Initial resize
-    handleResize();
-
-    // Cleanup event listeners
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
+        window.removeEventListener('scroll', handleScroll)
     };
-  }, [navHeight]);
-
+}, []);
   return (
     <div className="App">
       <Parallax strength={500} renderLayer={(percentage) => (
@@ -52,53 +37,64 @@ function App() {
             transform: "translate(-50%,-50%)",
             width: percentage * 500,
             height: percentage * 500,
+            zIndex: 0,
           }} />
         </div>
       )}>
         <div id="home" className="page">
           <h1>nicole pyzza</h1>
           <p class='sub'>DevOps | Cloud | Site Reliability Engineer</p>
-          <div className={navStuck ? "navbar stuck" : "navbar"}>
-            <Link to="home" smooth={true} duration={500}>
-              Home
-            </Link>
-            <Link to="about" smooth={true}>
-              About
-            </Link>
-            <Link to="experience" smooth={true} duration={500}>
-              Experience
-            </Link>
-            <Link to="resume" smooth={true} duration={500}>
-              Resume
-            </Link>
-            <Link to="contact" smooth={true} duration={500}>
-              Contact
-            </Link>
-          </div>
+          <Navbar />
         </div>
       </Parallax>
       <Parallax strength={500}> 
         <div id="about" className="page">
           <h2>About</h2>
-          <p>This is the about section. A8A07D</p>
+          <p>This is the about section. </p>
         </div>
       </Parallax>
-      <Parallax bgImage="/path/to/your/image.jpg" strength={500}>
-        <div id="experience" className="page">
+      <Parallax strength={500} renderLayer={(percentage) => (
+        <div>
+          <div style={{ 
+            position: "fixed",
+            background: `rgba(168, 160, 125, .4)`,
+            left: "80%",
+            top: "30%",
+            borderRadius: "50%",
+            transform: "translate(-50%,-50%)",
+            width: percentage * 300,
+            height: percentage * 300,
+          }} />
+        </div>
+      )}>
+        <div id="experience" className="page" >
           <h2>Experience</h2>
-          <p>This is the experience section.7BC1CD</p>
+          <p>This is the experience section.</p>
         </div>
       </Parallax>
-      <Parallax bgImage="/path/to/your/image.jpg" strength={500}>
+      <Parallax strength={500}>
+        <div id="education" className="page">
+          <h2>Education</h2>
+          <p>This is the education section. </p>
+        </div>
+      </Parallax>
+      <Parallax strength={500} renderLayer={(percentage) => (
+        <div>
+          <div style={{ 
+            position: "fixed",
+            background: `rgba(166, 188, 128, .6)`,
+            left: "30%",
+            top: "80%",
+            borderRadius: "50%",
+            transform: "translate(-50%,-50%)",
+            width: percentage * 800,
+            height: percentage * 800,
+          }} />
+        </div>
+      )}>
         <div id="resume" className="page">
           <h2>Resume</h2>
-          <p>This is the resume section.DCD5B9</p>
-        </div>
-      </Parallax>
-      <Parallax bgImage="/path/to/your/image.jpg" strength={500}>
-        <div id="contact" className="page" style={{ backgroundColor: "#A8A07D" }}>
-          <h2>Contact</h2>
-          <p>This is the contact section.</p>
+          <Document file={resume} />
         </div>
       </Parallax>
     </div>
