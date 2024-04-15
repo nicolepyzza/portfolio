@@ -14,7 +14,6 @@ export default function About() {
                 Additionally, I have just over 5 years of marketing experience. This showcases my success in high-pressure environments,
                 managing tight deadlines and going above and beyond for every client.
                 <br/><br/>
-                Due to extenu
                 <b>Fun facts about me:</b> I implemented the First Generation Graduate program at the University at Albany, showcasing the hard work that First Gens have to put forth in order to get to graduation.
             </div>
         </div>
