@@ -7,25 +7,25 @@ function Navbar() {
     return(
         <div className="header" id="header">
             <Link to="home" smooth={true} duration={500}>
-                Home
+                HOME
             </Link>
             <Link to="about" smooth={true}>
-                About
+                ABOUT
             </Link>
             <Link to="experience" smooth={true} duration={500}>
-                Experience
+                EXPERIENCE
             </Link>
             <Link to="education" smooth={true} duration={500}>
-                Education
+                EDUCATION
             </Link>
             <Link to="resume" smooth={true} duration={500}>
-                Resume
+                RESUME
             </Link>
             <Link to="#" smooth={true} duration={500} onClick={(e) => {
             window.location.href = 'mailto:nicolepyzza@gmail.com';
             e.preventDefault();
             }}>
-                Contact
+                CONTACT
             </Link>
         </div>
     );

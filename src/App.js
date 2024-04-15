@@ -4,6 +4,7 @@ import { Document } from 'react-pdf';
 import "./App.css";
 import Navbar from "./components/navbar";
 import resume from './assets/NicolePyzza2024.pdf';
+import About from "./components/about";
 
 function App() {
   useEffect(() => {
@@ -49,8 +50,7 @@ function App() {
       </Parallax>
       <Parallax strength={500}> 
         <div id="about" className="page">
-          <h2>About</h2>
-          <p>This is the about section. </p>
+          <About />
         </div>
       </Parallax>
       <Parallax strength={500} renderLayer={(percentage) => (
